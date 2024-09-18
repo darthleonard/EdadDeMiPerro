@@ -1,20 +1,69 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
-    <ion-title>
-      Blank
-    </ion-title>
+    <ion-title> Edad de mi Perro </ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content [fullscreen]="true">
   <ion-header collapse="condense">
     <ion-toolbar>
-      <ion-title size="large">Blank</ion-title>
+      <ion-title size="large">Edad de mi Perro</ion-title>
     </ion-toolbar>
   </ion-header>
 
-  <div id="container">
-    <strong>Ready to create an app?</strong>
-    <p>Start with Ionic <a target="_blank" rel="noopener noreferrer" href="https://ionicframework.com/docs/components">UI Components</a></p>
-  </div>
+  <ion-grid>
+    <ion-row class="ion-text-center result-panel">
+      <ion-col size="12">
+        <ion-label class="result-label">
+          {{ aniosPerro | number : '1.2-2' }}
+        </ion-label>
+        <ion-label>a&ntilde;os</ion-label>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+
+  <ion-item>
+    <ion-label position="floating">A&ntilde;os</ion-label>
+    <ion-input
+      type="number"
+      placeholder="A&ntilde;os"
+      [(ngModel)]="anios"
+    ></ion-input>
+  </ion-item>
+
+  <ion-item>
+    <ion-label position="floating">Meses</ion-label>
+    <ion-input
+      type="number"
+      placeholder="Meses"
+      [(ngModel)]="meses"
+    ></ion-input>
+  </ion-item>
+
+  <ion-list>
+    <ion-radio-group [(ngModel)]="tamanoRaza">
+      <ion-list-header>
+        <ion-label> Selecciona tama&ntilde;o de raza </ion-label>
+      </ion-list-header>
+
+      <ion-item>
+        <ion-label>Chica</ion-label>
+        <ion-radio value="0"></ion-radio>
+      </ion-item>
+
+      <ion-item>
+        <ion-label>Mediana</ion-label>
+        <ion-radio value="1"></ion-radio>
+      </ion-item>
+
+      <ion-item>
+        <ion-label>Grande</ion-label>
+        <ion-radio value="2"></ion-radio>
+      </ion-item>
+    </ion-radio-group>
+  </ion-list>
 </ion-content>
+
+<ion-footer no-shadow>
+  <ion-button expand="block" (click)="calcular()"> Calcular </ion-button>
+</ion-footer>
