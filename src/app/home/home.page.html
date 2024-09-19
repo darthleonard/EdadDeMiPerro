@@ -15,9 +15,13 @@
     <ion-row class="ion-text-center result-panel">
       <ion-col size="12">
         <ion-label class="result-label">
-          {{ aniosPerro | number : '1.2-2' }}
+          {{ humanAgeYears }}
         </ion-label>
         <ion-label>a&ntilde;os</ion-label>
+        <ion-label class="result-label">
+          {{ humanAgeMonths }}
+        </ion-label>
+        <ion-label>meses</ion-label>
       </ion-col>
     </ion-row>
   </ion-grid>
@@ -27,7 +31,8 @@
     <ion-input
       type="number"
       placeholder="A&ntilde;os"
-      [(ngModel)]="anios"
+      min="0"
+      [(ngModel)]="years"
     ></ion-input>
   </ion-item>
 
@@ -36,12 +41,14 @@
     <ion-input
       type="number"
       placeholder="Meses"
-      [(ngModel)]="meses"
+      min="0"
+      max="12"
+      [(ngModel)]="months"
     ></ion-input>
   </ion-item>
 
   <ion-list>
-    <ion-radio-group [(ngModel)]="tamanoRaza">
+    <ion-radio-group [(ngModel)]="size">
       <ion-list-header>
         <ion-label> Selecciona tama&ntilde;o de raza </ion-label>
       </ion-list-header>
