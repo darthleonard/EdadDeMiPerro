@@ -1,4 +1,4 @@
-name: Build Edad De Mi Perro Android Bundle
+name: Build Android Bundle
 
 on: 
   push:
