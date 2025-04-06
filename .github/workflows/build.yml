@@ -12,7 +12,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout source
-        uses: actions/checkout@v2
+        uses: actions/checkout@v4
 
       - name: Setup Java
         uses: actions/setup-java@v1
@@ -52,7 +52,7 @@ jobs:
           buildToolsVersion: 34.0.0
 
       - name: Upload bundle
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: edad-de-mi-perro
           path: ${{steps.sign_app.outputs.signedFile}}
