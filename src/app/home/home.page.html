@@ -1,81 +1,98 @@
-<ion-header [translucent]="true">
+<ion-header [translucent]="true" class="header-minimal">
   <ion-toolbar>
-    <ion-title> Edad de mi Perro </ion-title>
+    <ion-title class="header-title">Edad de mi Perro</ion-title>
     <ion-buttons slot="end">
-      <ion-button (click)="onInfoClick()">
-        <ion-icon slot="start" name="help"></ion-icon>
+      <ion-button (click)="onInfoClick()" class="info-button">
+        <ion-icon slot="icon-only" name="help-circle-outline"></ion-icon>
       </ion-button>
     </ion-buttons>
   </ion-toolbar>
 </ion-header>
 
-<ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">Edad de mi Perro</ion-title>
-    </ion-toolbar>
-  </ion-header>
+<ion-content [fullscreen]="true" class="content-minimal">
+  <!-- Result Card -->
+  <div
+    class="result-card"
+    [class.has-result]="humanAgeYears > 0 || humanAgeMonths > 0"
+  >
+    <div class="result-header">
+      <p class="result-label-text">Edad equivalente en a&ntilde;os humanos</p>
+    </div>
+    <div class="result-content">
+      <div class="result-value-group">
+        <div class="result-value">
+          <span class="value-number">{{ humanAgeYears }}</span>
+          <span class="value-unit">a&ntilde;os</span>
+        </div>
+        <div class="result-separator">•</div>
+        <div class="result-value">
+          <span class="value-number">{{ humanAgeMonths }}</span>
+          <span class="value-unit">meses</span>
+        </div>
+      </div>
+    </div>
+  </div>
 
-  <ion-grid>
-    <ion-row class="ion-text-center result-panel">
-      <ion-col size="12">
-        <ion-label class="result-label">
-          {{ humanAgeYears }}
-        </ion-label>
-        <ion-label>a&ntilde;os</ion-label>
-        <ion-label class="result-label">
-          {{ humanAgeMonths }}
-        </ion-label>
-        <ion-label>meses</ion-label>
-      </ion-col>
-    </ion-row>
-  </ion-grid>
+  <!-- Input Card -->
+  <div class="input-card">
+    <div class="card-header">
+      <h3 class="card-title">Datos del Perro</h3>
+    </div>
 
-  <ion-item>
-    <ion-label position="floating">A&ntilde;os</ion-label>
-    <ion-input
-      type="number"
-      placeholder="A&ntilde;os"
-      min="0"
-      [(ngModel)]="years"
-    ></ion-input>
-  </ion-item>
+    <div class="input-group">
+      <div class="input-wrapper">
+        <label class="input-label">A&ntilde;os</label>
+        <ion-input
+          type="number"
+          placeholder="0"
+          min="0"
+          class="modern-input"
+          [(ngModel)]="years"
+        ></ion-input>
+      </div>
 
-  <ion-item>
-    <ion-label position="floating">Meses</ion-label>
-    <ion-input
-      type="number"
-      placeholder="Meses"
-      min="0"
-      max="12"
-      [(ngModel)]="months"
-    ></ion-input>
-  </ion-item>
+      <div class="input-wrapper">
+        <label class="input-label">Meses</label>
+        <ion-input
+          type="number"
+          placeholder="0"
+          min="0"
+          max="12"
+          class="modern-input"
+          [(ngModel)]="months"
+        ></ion-input>
+      </div>
+    </div>
+  </div>
 
-  <ion-list>
-    <ion-radio-group [(ngModel)]="size">
-      <ion-list-header>
-        <ion-label> Selecciona tama&ntilde;o de raza </ion-label>
-      </ion-list-header>
+  <div class="input-card">
+    <div class="card-header">
+      <h3 class="card-title">Tama&ntilde;o de Raza</h3>
+    </div>
 
-      <ion-item>
-        <ion-label>Chica</ion-label>
-        <ion-radio value="0"></ion-radio>
-      </ion-item>
+    <div class="size-selector">
+      <ion-radio-group [(ngModel)]="size" class="radio-group">
+        <label class="radio-option" [class.selected]="size === '0'">
+          <ion-radio value="0" class="custom-radio"></ion-radio>
+          <span class="radio-label">Chica</span>
+        </label>
 
-      <ion-item>
-        <ion-label>Mediana</ion-label>
-        <ion-radio value="1"></ion-radio>
-      </ion-item>
+        <label class="radio-option" [class.selected]="size === '1'">
+          <ion-radio value="1" class="custom-radio"></ion-radio>
+          <span class="radio-label">Mediana</span>
+        </label>
 
-      <ion-item>
-        <ion-label>Grande</ion-label>
-        <ion-radio value="2"></ion-radio>
-      </ion-item>
-    </ion-radio-group>
-  </ion-list>
+        <label class="radio-option" [class.selected]="size === '2'">
+          <ion-radio value="2" class="custom-radio"></ion-radio>
+          <span class="radio-label">Grande</span>
+        </label>
+      </ion-radio-group>
+    </div>
+  </div>
+
+  <div class="button-container">
+    <ion-button expand="block" (click)="calcular()" class="calculate-button">
+      <span>Calcular Edad</span>
+    </ion-button>
+  </div>
 </ion-content>
-
-<ion-footer no-shadow>
-  <ion-button expand="block" (click)="calcular()"> Calcular </ion-button>
-</ion-footer>

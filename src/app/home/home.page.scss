@@ -1,37 +1,348 @@
-#container {
-  text-align: center;
+// Color Palette - Modern Minimalist
+$primary-color: #5b5bff;
+$primary-light: #f0f0ff;
+$accent-color: #ff6b6b;
+$bg-color: #ffffff;
+$text-primary: #1a1a1a;
+$text-secondary: #666666;
+$border-color: #e8e8e8;
+$shadow-subtle: 0 2px 8px rgba(0, 0, 0, 0.06);
+$shadow-card: 0 4px 12px rgba(0, 0, 0, 0.08);
 
-  position: absolute;
-  left: 0;
-  right: 0;
-  top: 50%;
-  transform: translateY(-50%);
+// Typography
+ion-content.content-minimal {
+  --background: #f9f9f9;
 }
 
-#container strong {
-  font-size: 20px;
-  line-height: 26px;
+ion-header.header-minimal {
+  ion-toolbar {
+    --background: white;
+    --border-color: $border-color;
+    border-bottom: 1px solid $border-color;
+  }
 }
 
-#container p {
-  font-size: 16px;
-  line-height: 22px;
+.header-title {
+  font-size: 18px;
+  font-weight: 600;
+  letter-spacing: 0.3px;
+  color: $text-primary;
+}
 
-  color: #8c8c8c;
+.info-button {
+  --color: #999 !important;
+  --icon-font-size: 24px;
+  --padding-start: 12px;
+  --padding-end: 12px;
+  --padding-top: 8px;
+  --padding-bottom: 8px;
+  transition: all 0.2s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 
+  &:hover,
+  &:active {
+    --color: $primary-color !important;
+  }
+
+  ion-icon {
+    color: #999 !important;
+  }
+
+  &:hover ion-icon,
+  &:active ion-icon {
+    color: $primary-color !important;
+  }
+}
+
+// Result Card - Modern Design
+.result-card {
+  margin: 20px;
+  padding: 24px;
+  background: linear-gradient(135deg, #5b5bff 0%, #7676ff 100%);
+  border-radius: 16px;
+  box-shadow: $shadow-card;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  opacity: 0.7;
+  transform: scale(0.98);
+
+  &.has-result {
+    opacity: 1;
+    transform: scale(1);
+    box-shadow: 0 8px 24px rgba(91, 91, 255, 0.2);
+  }
+}
+
+.result-header {
+  margin-bottom: 16px;
+}
+
+.result-label-text {
+  font-size: 13px;
+  font-weight: 500;
+  letter-spacing: 0.5px;
+  color: rgba(255, 255, 255, 0.8);
+  text-transform: uppercase;
   margin: 0;
 }
 
-#container a {
-  text-decoration: none;
+.result-content {
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
-.result-label {
-  font-size: 4em;
+.result-value-group {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+  justify-content: center;
 }
 
-.result-panel {
-  padding-top: 3em;
-  padding-bottom: 3em;
-  background:#4c8dff
+.result-value {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+}
+
+.value-number {
+  font-size: 42px;
+  font-weight: 700;
+  color: white;
+  line-height: 1;
+}
+
+.value-unit {
+  font-size: 12px;
+  font-weight: 500;
+  color: rgba(255, 255, 255, 0.9);
+  letter-spacing: 0.3px;
+}
+
+.result-separator {
+  font-size: 24px;
+  color: rgba(255, 255, 255, 0.5);
+  line-height: 1;
+}
+
+// Input Card - Minimalist Style
+.input-card {
+  margin: 16px 20px;
+  padding: 24px;
+  background: white;
+  border-radius: 12px;
+  box-shadow: $shadow-subtle;
+  border: 1px solid $border-color;
+  transition: all 0.2s ease;
+
+  &:hover {
+    box-shadow: $shadow-card;
+  }
+}
+
+.card-header {
+  margin-bottom: 16px;
+  padding-bottom: 12px;
+  border-bottom: 1px solid $border-color;
+}
+
+.card-title {
+  margin: 0;
+  font-size: 16px;
+  font-weight: 600;
+  color: $text-primary;
+  letter-spacing: 0.2px;
+}
+
+// Input Fields - Modern
+.input-group {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+  margin-top: 12px;
+}
+
+.input-wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  position: relative;
+}
+
+.input-label {
+  font-size: 11px;
+  font-weight: 700;
+  color: $text-secondary;
+  text-transform: uppercase;
+  letter-spacing: 0.8px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.modern-input {
+  --background: white;
+  --border-radius: 10px;
+  --padding-start: 14px;
+  --padding-end: 14px;
+  --padding-top: 12px;
+  --padding-bottom: 12px;
+  --border-color: $border-color;
+  --border-width: 2px;
+  --color: #000000 !important;
+  --placeholder-color: #bbb;
+  --placeholder-opacity: 1;
+  font-size: 16px;
+  font-weight: 500;
+  border-radius: 10px;
+  transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.04);
+  color: #000000 !important;
+
+  &:focus,
+  &:active {
+    --border-color: $primary-color;
+    --background: white;
+    box-shadow:
+      0 0 0 4px rgba(91, 91, 255, 0.12),
+      0 2px 8px rgba(91, 91, 255, 0.15);
+  }
+
+  &::part(container) {
+    border-width: 2px;
+    border-style: solid;
+  }
+
+  input,
+  textarea {
+    color: #000000 !important;
+    font-weight: 500 !important;
+  }
+}
+
+// Ionic Input Override
+ion-input.modern-input {
+  --background: white !important;
+  --border-radius: 10px !important;
+  --color: #000000 !important;
+
+  ion-input::part(native) {
+    font-weight: 500;
+    color: #000000 !important;
+  }
+}
+
+::ng-deep ion-input.modern-input input {
+  color: #000000 !important;
+  font-weight: 500 !important;
+  font-size: 16px !important;
+}
+
+// Radio Group - Custom Styled
+.size-selector {
+  padding: 8px 0;
+}
+
+.radio-group {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 10px;
+}
+
+.radio-option {
+  position: relative;
+  display: flex;
+  align-items: center;
+  padding: 12px;
+  border-radius: 8px;
+  border: 2px solid $border-color;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  background: white;
+  gap: 8px;
+
+  &:hover {
+    border-color: $primary-color;
+    background: $primary-light;
+  }
+
+  &.selected {
+    border-color: $primary-color;
+    background: $primary-light;
+
+    .radio-label {
+      color: $primary-color;
+      font-weight: 600;
+    }
+  }
+}
+
+.radio-label {
+  font-size: 14px;
+  font-weight: 500;
+  color: $text-primary;
+  transition: all 0.2s ease;
+}
+
+// Button Container
+.button-container {
+  padding: 24px 20px 40px 20px;
+}
+
+.calculate-button {
+  --border-radius: 10px;
+  --padding-top: 12px;
+  --padding-bottom: 12px;
+  --box-shadow: 0 4px 12px rgba(91, 91, 255, 0.3);
+  font-size: 16px;
+  font-weight: 600;
+  letter-spacing: 0.3px;
+  text-transform: none;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+
+  span {
+    color: white;
+  }
+
+  &:hover {
+    --box-shadow: 0 6px 16px rgba(91, 91, 255, 0.4);
+    transform: translateY(-2px);
+  }
+
+  &:active {
+    transform: translateY(0);
+  }
+}
+
+// Responsive Design
+@media (max-width: 480px) {
+  .radio-group {
+    grid-template-columns: 1fr;
+  }
+
+  .result-value-group {
+    gap: 16px;
+  }
+
+  .value-number {
+    font-size: 32px;
+  }
+}
+
+// Animation for smooth transitions
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+ion-content {
+  animation: slideIn 0.3s ease-out;
 }
