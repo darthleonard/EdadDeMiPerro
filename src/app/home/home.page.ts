@@ -9,35 +9,41 @@ import { AlertController } from '@ionic/angular';
 export class HomePage {
   constructor(private alertController: AlertController) {}
 
-  years: number;
-  months: number;
-  size = "0";
+  years: number = 0;
+  months: number = 0;
+  size = '0';
   humanAgeYears = 0;
   humanAgeMonths = 0;
 
   calcular() {
-    // fix values in case user didnt informed it
-    if(!this.years) {
+    if (!this.years) {
       this.years = 0;
     }
 
-    if(!this.months || this.months > 12) {
+    if (!this.months || this.months > 12) {
       this.months = 0;
     }
 
-    // growing factor for younger than 3 years
+    // UK Kennel Club Rule:
+    // First 2 years (factor per year):
+    // Small: 12.5/2 = 6.25 per year, Medium: 10.5/2 = 5.25 per year, Large: 9/2 = 4.5 per year
     const growingFactorA = [6.25, 5.25, 4.5];
 
-    // growing factor for older than 3 years
+    // Each additional year after 2 (4.3 to 13.4 depending on breed):
+    // Small dogs age slower, Large dogs age faster
     const growingFactorB = [4.3, 7.13, 8.37];
 
-    // calc age in dog years
+    const sizeIndex = Number(this.size);
+
     const dogAge = this.years + this.months / 12;
 
-    // arrange age in humans years
-    const humanAge = dogAge < 3.0 
-      ? dogAge * growingFactorA[this.size]
-      : dogAge * growingFactorB[this.size] + growingFactorA[this.size];
+    // For dogs <= 2 years: multiply by growingFactorA
+    // For dogs > 2 years: first 2 years (using growingFactorA) + remaining years (using growingFactorB)
+    const humanAge =
+      dogAge <= 2.0
+        ? dogAge * growingFactorA[sizeIndex]
+        : 2 * growingFactorA[sizeIndex] +
+          (dogAge - 2) * growingFactorB[sizeIndex];
 
     // get years
     this.humanAgeYears = Math.floor(humanAge);
@@ -46,7 +52,7 @@ export class HomePage {
     const humanAgeMonths = humanAge - this.humanAgeYears;
 
     // fix decimal to 12 months base
-    this.humanAgeMonths = Math.floor(humanAgeMonths * 12 / .99);
+    this.humanAgeMonths = Math.floor((humanAgeMonths * 12) / 0.99);
   }
 
   async onInfoClick() {
